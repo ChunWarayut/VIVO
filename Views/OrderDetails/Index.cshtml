@@ -1,0 +1,51 @@
+﻿@model IEnumerable<VIVO.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDetails_Number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pro_Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.ProType_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductOrder.User_Id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDetails_Number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pro_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.ProType_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductOrder.User_Id)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Order_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Order_Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Order_Id })
+        </td>
+    </tr>
+}
+
+</table>
