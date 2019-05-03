@@ -11,6 +11,13 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Bank_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bank_Number)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Bank_Name)
         </dt>
 
@@ -29,6 +36,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Bank_Number }) |
+    @Html.ActionLink("แก้ไข", "Edit", new { id = Model.Bank_Number }) |
     @Html.ActionLink("ย้อนกลับ", "Index")
 </p>
