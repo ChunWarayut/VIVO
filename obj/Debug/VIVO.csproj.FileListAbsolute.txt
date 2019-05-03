@@ -78,3 +78,5 @@ E:\MVC\VIVO\VIVO\obj\Debug\VIVO.csproj.CoreCompileInputs.cache
 E:\MVC\VIVO\VIVO\obj\Debug\VIVO.csproj.CopyComplete
 E:\MVC\VIVO\VIVO\obj\Debug\VIVO.dll
 E:\MVC\VIVO\VIVO\obj\Debug\VIVO.pdb
+D:\GitHub\VIVO\obj\Debug\VIVO.dll
+D:\GitHub\VIVO\obj\Debug\VIVO.pdb

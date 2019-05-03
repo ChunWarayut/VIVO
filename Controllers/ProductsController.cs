@@ -49,17 +49,17 @@ namespace VIVO.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Pro_Id,ProType_Id,Pro_Name,Pro_Details,Pro_Price,Pro_Color,Pro_Picture")] Product product, HttpPostedFileBase Pro_Picture)
-        {
-
-            if (Pro_Picture.ContentLength > 0)
+        public ActionResult Create([Bind(Include = "Pro_Id,ProType_Id,Pro_Name,Pro_Details,Pro_Price,Pro_Color")] Product product, HttpPostedFileBase Pro_Picture)
+        { 
+            if (ModelState.IsValid)
             {
-                string FileName = Path.GetFileName(Pro_Picture.FileName);
-                string FolderPath = Path.Combine(Server.MapPath("~/image"), FileName);
-                Pro_Picture.SaveAs(FolderPath);
-                product.Pro_Picture = FileName;
-                if (ModelState.IsValid)
+                if (Pro_Picture.ContentLength > 0)
                 {
+                    string FileName = Path.GetFileName(Pro_Picture.FileName);
+                    string FolderPath = Path.Combine(Server.MapPath("~/image"), FileName);
+                    Pro_Picture.SaveAs(FolderPath);
+                    product.Pro_Picture = FileName;
+
                     db.Products.Add(product);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -91,13 +91,21 @@ namespace VIVO.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Pro_Id,ProType_Id,Pro_Name,Pro_Details,Pro_Price,Pro_Color,Pro_Picture")] Product product)
+        public ActionResult Edit([Bind(Include = "Pro_Id,ProType_Id,Pro_Name,Pro_Details,Pro_Price,Pro_Color")] Product product, HttpPostedFileBase Pro_Picture)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (Pro_Picture != null || Pro_Picture.ContentLength != "" || Pro_Picture.ContentLength != " ")
+                {
+                    string FileName = Path.GetFileName(Pro_Picture.FileName);
+                    string FolderPath = Path.Combine(Server.MapPath("~/image"), FileName);
+                    Pro_Picture.SaveAs(FolderPath);
+                    product.Pro_Picture = FileName;
+
+                }
+                    db.Entry(product).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
             }
             ViewBag.ProType_Id = new SelectList(db.ProductTypes, "ProType_Id", "ProType_Name", product.ProType_Id);
             return View(product);

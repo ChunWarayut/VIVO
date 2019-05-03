@@ -1,7 +1,5 @@
 ﻿@model IEnumerable<VIVO.Models.Product>
-@{
-                /**/
-
+@{  
                 ViewBag.Title = "Home Page";
 }
 
@@ -17,10 +15,11 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card" style="width:20rem;margin:20px 0 24px 0">
                 <img src="~/image/@Html.DisplayFor(modelItem => item.Pro_Picture)"
                      alt="company logo"
+                     height="225px"
                      asp-append-version="true" />
                 <div class="card-body">
                     <h4 class="card-title">@Html.DisplayFor(modelItem => item.Pro_Name)</h4>
