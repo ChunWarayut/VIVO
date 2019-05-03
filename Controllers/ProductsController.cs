@@ -95,17 +95,17 @@ namespace VIVO.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Pro_Picture != null || Pro_Picture.ContentLength != "" || Pro_Picture.ContentLength != " ")
+                if (Pro_Picture.ContentLength > 0)
                 {
                     string FileName = Path.GetFileName(Pro_Picture.FileName);
                     string FolderPath = Path.Combine(Server.MapPath("~/image"), FileName);
                     Pro_Picture.SaveAs(FolderPath);
                     product.Pro_Picture = FileName;
 
-                }
                     db.Entry(product).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index"); 
+                }
             }
             ViewBag.ProType_Id = new SelectList(db.ProductTypes, "ProType_Id", "ProType_Name", product.ProType_Id);
             return View(product);
